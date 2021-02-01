@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+        let timer = 7;
+        let udledning = 109;
+        let tilsammen = timer * udledning;
+        let resultat;
+
+        if (tilsammen < 100) {
+            resultat = `Du har fløjet ${timer} og udledt ${tilsammen} kg CO2. Tæt på Thunberg.`;
+
+        } else if (tilsammen > 100 && tilsammen < 200) {
+            resultat = `Du har fløjet ${timer} og udledt ${tilsammen} kg CO2. Ja ja, du behøver ikke melde dig ud af Å!`;
+
+
+        } else if (tilsammen > 200 && tilsammen < 600) {
+            resultat = `Du har fløjet ${timer} og udledt ${tilsammen} kg CO2. Det er godt for turismen i nordeuropa`;
+
+
+        } else {
+            resultat = `Du har fløjet ${timer} og udledt ${tilsammen} kg CO2. nå ja vi kan jo altid konolisere til en anden planet...`;
+        }
+
+
+        console.log(resultat);
+
+
+        /*let længde = 30;
+        let bredde = 4;
+        let areal = længde * bredde;
+        let resultat;
+
+        if (areal < 100) {
+            resultat = "Arealet er for lille";
+
+        } else if (areal < 200) {
+            resultat = "Arealet er ok";
+
+        } else {
+
+            resultat = "Arealet er for stort";
+        }
+
+        console.log(resultat);*/
+
+    </script>
+</body>
+
+</html>
