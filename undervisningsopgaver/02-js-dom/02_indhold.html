@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<style>
+    body {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    header {
+        text-align: center;
+    }
+
+
+    article {
+        border: solid 2px black;
+
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    h3,
+    p {
+        margin: 0;
+    }
+
+    section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-gap: 20px;
+    }
+
+</style>
+
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+    <main>
+        <h2>Undertitel</h2>
+
+        <section>
+            <article>
+                <img src="https://placeimg.com/640/480/any">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ut deserunt et consequuntur, enim iure quae tempora? Eius minus nisi neque soluta vitae dolorum ipsum odit. Iusto placeat minima illum!</p>
+
+            </article>
+            <article>
+                <img src="https://placeimg.com/640/480/any">
+                <h3>Article 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ut deserunt et consequuntur, enim iure quae tempora? Eius minus nisi neque soluta vitae dolorum ipsum odit. Iusto placeat minima illum!</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        This is the footer
+    </footer>
+
+    <script>
+        const titel = document.querySelector("header");
+        titel.textContent;
+        titel.textContent = "Billeder";
+        console.log(titel.textContent);
+
+        const undertitel = document.querySelector("h2");
+        undertitel.textContent;
+        console.log(undertitel.textContent);
+        undertitel.textContent = "Se mine flotte billeder";
+
+        const pic1 = document.querySelector("article:first-child img");
+        console.log(pic1);
+
+        const pic2 = document.querySelector("article:nth-child(2) img");
+        console.log(pic2);
+
+        const h3venstre = document.querySelector("article:first-child h3");
+        console.log(h3venstre);
+        h3venstre.innerHTML = "<h3>Venstre billede</h3>";
+
+        const h3højre = document.querySelector("article:nth-child(2) h3");
+        console.log(h3højre);
+        h3højre.textContent = "Højre billede";
+
+        const pvenstre = document.querySelector("article:first-child p");
+        console.log(pvenstre);
+        pvenstre.innerHTML = "<p>Det her viser et rigtig flot random billede</p>"
+
+        const phøjre = document.querySelector("article:nth-child(2) p");
+        console.log(phøjre);
+        phøjre.textContent = "Her er et random billede";
+
+        const footer = document.querySelector("footer");
+        console.log(footer);
+
+    </script>
+
+</body>
+
+
+
+</html>
