@@ -56,13 +56,13 @@
 
         <section>
             <article>
-                <img src="https://placeimg.com/640/480/any">
+                <img src="billeder/placeimg_640_480_animals.jpg" alt="">
                 <h3>Article 1</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ut deserunt et consequuntur, enim iure quae tempora? Eius minus nisi neque soluta vitae dolorum ipsum odit. Iusto placeat minima illum!</p>
 
             </article>
             <article>
-                <img src="https://placeimg.com/640/480/any">
+                <img src="billeder/placeimg_640_480_animals.jpg" alt="">
                 <h3>Article 2</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ut deserunt et consequuntur, enim iure quae tempora? Eius minus nisi neque soluta vitae dolorum ipsum odit. Iusto placeat minima illum!</p>
             </article>
@@ -84,11 +84,25 @@
         console.log(undertitel.textContent);
         undertitel.textContent = "Se mine flotte billeder";
 
+
+
+
+
         const pic1 = document.querySelector("article:first-child img");
         console.log(pic1);
+        pic1.src = "billeder/mig.jpg";
+        pic1.alt = "mit søde billede";
+
 
         const pic2 = document.querySelector("article:nth-child(2) img");
         console.log(pic2);
+        pic2.src = "billeder/mig.jpg";
+        pic2.alt = "mit ikke så søde billede";
+
+
+
+
+
 
         const h3venstre = document.querySelector("article:first-child h3");
         console.log(h3venstre);
