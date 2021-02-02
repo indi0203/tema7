@@ -10,11 +10,14 @@
 
 <body>
     <p>Gæt tallet mellem 0 og 20</p>
+
     <input type="text" id="tal">
-    <button>Klik og se om du gættede rigtigt</button>
+
+    <button>Gæt</button>
+    <button id="nyt_spil">Nyt spil</button>
 
     <script>
-        let randomNumber = Math.floor(Math.random() * 20) + 1;
+        const randomNumber = Math.round(Math.random() * 20);
 
         let antal = 1;
         document.querySelector("button").addEventListener("click", buttonClick);
@@ -23,17 +26,17 @@
             let gæt = document.querySelector("#tal").value;
 
             if (gæt == randomNumber) {
-                alert("Tillykke! Du gættede det på " + antal + " forsøg. Tryk på ok for at prøve igen");
+                console.log("Tillykke! Du gættede det på " + antal + " forsøg. Tryk på ok for at prøve igen");
 
 
             } else if (gæt > randomNumber) {
                 antal++;
-                alert("Prøv et mindre nummer");
+                console.log("Prøv et mindre nummer");
 
 
             } else {
                 antal++;
-                alert("Prøv et større nummer")
+                console.log("Prøv et større nummer")
             }
         }
 

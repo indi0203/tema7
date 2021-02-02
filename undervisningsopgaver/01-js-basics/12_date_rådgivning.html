@@ -11,28 +11,47 @@
 <body>
 
     <p>Din alder</p>
-    <input type="text" id="alder1">
-    <p>Din kærestes alder</p>
-    <input type="text" id="alder2">
-    <button>Klik og se om reglen er overholdt</button>
+
+    <input type="text" id="dinAlder">
+
+    <p>Din dates alder</p>
+
+    <input type="text" id="datesAlder">
+
+    <button>Går det?</button>
 
     <script>
+        let dinAlder;
+        let datesAlder;
+        let minAlder;
+        let maxAlder;
+
         document.querySelector("button").addEventListener("click", buttonClick);
 
         function buttonClick() {
+            dinAlder = document.querySelector("#dinAlder").value;
 
+            datesAlder = document.querySelector("#datesAlder").value;
 
-            let dinalder = document.querySelector("#alder1").value;
-            let andenalder = document.querySelector("#alder2").value;
-            /*let areal = længde * bredde;*/
-            let resultat = `Længden er ${dinalder} meter og bredden er ${andenalder} meter. Arealet er ${areal(dinalder,andenalder)}`;
+            //Hvad er det yngste din date må være
+            minAlder = Math.round(dinAlder / 2 + 7);
+            maxAlder = Math.round((dinAlder - 7) * 2);
+            console.log("minAlder", minAlder);
+            console.log("maxAlder", maxAlder);
 
-            console.log(resultat);
+            if (dinAlder < 15 || datesAlder < 15) {
+                console.log("En af parterne er for unge");
 
-        }
+            } else {
+                if (datesAlder >= minAlder && datesAlder <= maxAlder) {
+                    console.log("Det er passende")
 
-        function areal(a, b) {
-            return a / b + 7;
+                } else if (datesAlder < minAlder) {
+                    console.log(`Du er ${dinAlder} og din date er ${datesAlder}. Din date er ${minAlder} år for ung`);
+
+                }
+
+            }
 
         }
 
