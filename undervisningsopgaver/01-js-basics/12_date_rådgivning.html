@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p>Din alder</p>
+    <input type="text" id="alder1">
+    <p>Din kærestes alder</p>
+    <input type="text" id="alder2">
+    <button>Klik og se om reglen er overholdt</button>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClick);
+
+        function buttonClick() {
+
+
+            let dinalder = document.querySelector("#alder1").value;
+            let andenalder = document.querySelector("#alder2").value;
+            /*let areal = længde * bredde;*/
+            let resultat = `Længden er ${dinalder} meter og bredden er ${andenalder} meter. Arealet er ${areal(dinalder,andenalder)}`;
+
+            console.log(resultat);
+
+        }
+
+        function areal(a, b) {
+            return a / b + 7;
+
+        }
+
+    </script>
+</body>
+
+</html>
