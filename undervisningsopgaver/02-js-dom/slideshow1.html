@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <style></style>
+
+
+    <header>
+        <h1>Tro på det...</h1>
+    </header>
+
+    <main>
+        <section>
+            <img src="billeder/img1.png" alt="billede1">
+            <button>Videre</button>
+            <p>Billeder brugt med tilladelse af Rasmus Bregnhøi</p>
+        </section>
+
+    </main>
+
+
+    <script>
+        let nummer = 1;
+        console.log(nummer);
+
+        document.querySelector("button").addEventListener("click", videre);
+
+        function videre() {
+            console.log("videre");
+
+            document.querySelector("button").removeEventListener("click", videre);
+
+            const img1 = document.querySelector("img");
+            console.log(img1);
+            img1.src = "billeder/img2.png";
+            img1.alt = "Billede 2";
+            nummer++;
+            console.log(nummer);
+
+            document.querySelector("button").addEventListener("click", videre2);
+
+        }
+
+        function videre2() {
+            console.log("videre2");
+
+            const img2 = document.querySelector("img");
+            console.log(img2);
+            img2.src = "billeder/img3.png";
+            img2.alt = "Billede 3";
+            nummer++;
+            console.log(nummer);
+
+        }
+
+    </script>
+
+    <footer></footer>
+
+</body>
+
+</html>
