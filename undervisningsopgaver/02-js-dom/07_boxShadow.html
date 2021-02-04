@@ -44,6 +44,10 @@
         grid-gap: 20px;
     }
 
+    .shadow {
+        box-shadow: -10px 10px 5px -1px rgba(0, 205, 253, 0.64);
+    }
+
 </style>
 
 
@@ -55,13 +59,13 @@
         <h2>Undertitel</h2>
 
         <section>
-            <article>
+            <article class="shadow">
                 <img src="billeder/placeimg_640_480_animals.jpg" alt="">
                 <h3>Article 1</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ut deserunt et consequuntur, enim iure quae tempora? Eius minus nisi neque soluta vitae dolorum ipsum odit. Iusto placeat minima illum!</p>
 
             </article>
-            <article>
+            <article class="shadow">
                 <img src="billeder/placeimg_640_480_animals.jpg" alt="">
                 <h3>Article 2</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ut deserunt et consequuntur, enim iure quae tempora? Eius minus nisi neque soluta vitae dolorum ipsum odit. Iusto placeat minima illum!</p>
@@ -165,39 +169,26 @@
 
             document.querySelector("article:first-child img").addEventListener("click", skiftBillede);
 
-
-            document.querySelector("article").addEventListener("mouseout", boks);
-
-            const article = document.querySelector("article");
-            article.classList.toggle("article_class");
-
-            article.style.boxShadow = "-10px 10px 5px -1px rgba(0,205,253,0.64)";
-
-        }
-
-        function boks() {
-            //Opgave 7
-
-            console.log("boks");
-
-            const article = document.querySelector("article");
-            article.classList.remove("article_class");
+            newArticle.classList.add("shadow");
 
 
-
-            document.querySelector("article").addEventListener("mouseout", boksVæk);
-
-        }
-
-
-        function boksVæk() {
-            console.log("boks væk");
-
-
-            document.querySelector("article").removeEventListener("mouseover", boks);
+            document.querySelector("article:nth-child(1)").addEventListener("mouseover", elementOverAndOut);
+            document.querySelector("article:nth-child(1)").addEventListener("mouseout", elementOverAndOut);
+            document.querySelector("article:nth-child(2)").addEventListener("mouseover", elementOverAndOut);
+            document.querySelector("article:nth-child(2)").addEventListener("mouseout", elementOverAndOut);
+            document.querySelector("article:nth-child(3)").addEventListener("mouseover", elementOverAndOut);
+            document.querySelector("article:nth-child(3)").addEventListener("mouseout", elementOverAndOut);
 
 
         }
+
+        function elementOverAndOut() {
+
+            console.log("OVER AND OUT");
+            this.classList.toggle("shadow");
+
+        }
+
 
         function skiftBillede() {
 

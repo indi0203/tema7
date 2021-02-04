@@ -28,36 +28,28 @@
 
 
     <script>
-        let nummer = 1;
-        console.log(nummer);
+        //opret array
+        let billeder = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png"];
 
-        document.querySelector("button").addEventListener("click", videre);
+        const knap = document.querySelector("button");
+        //find billed
+        const billede = document.querySelector("img");
+        let number = 0;
 
-        function videre() {
-            console.log("videre");
+        knap.addEventListener("click", skiftBillede);
 
-            document.querySelector("button").removeEventListener("click", videre);
+        //opret funtion til at skifte billede;
+        function skiftBillede() {
+            if (number <= 7) {
+                number++;
+                knap.textContent = "Videre";
 
-            const img1 = document.querySelector("img");
-            console.log(img1);
-            img1.src = "billeder/img2.png";
-            img1.alt = "Billede 2";
-            nummer++;
-            console.log(nummer);
+            } else {
+                knap.textContent = "Forfra";
+                number = 0;
+            }
 
-            document.querySelector("button").addEventListener("click", videre2);
-
-        }
-
-        function videre2() {
-            console.log("videre2");
-
-            const img2 = document.querySelector("img");
-            console.log(img2);
-            img2.src = "billeder/img3.png";
-            img2.alt = "Billede 3";
-            nummer++;
-            console.log(nummer);
+            billede.src = "billeder/" + billeder[number];
 
         }
 
