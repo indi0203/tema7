@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Babushka</title>
     <style>
         body {
             font-family: sans-serif;
@@ -21,16 +21,40 @@
             margin: 2em;
         }
 
-        .person {
+        .ret {
             padding: 1em;
             border: 1px solid;
             border-radius: 1em;
+        }
+
+        .valgt {
+
+            background-color: red;
+        }
+
+        header {
+            text-align: center;
         }
     </style>
 
 </head>
 
 <body>
+
+    <header>
+
+        <h1>Alle</h1>
+
+        <nav>
+            <button data-kategori="alle" class="valgt">Alle</button>
+            <button data-kategori="forretter">Forretter</button>
+            <button data-kategori="hovedretter">Hovedretter</button>
+            <button data-kategori="desserter">Desseret</button>
+            <button data-kategori="sideorders">Sideorders</button>
+            <button data-kategori="drikkevarer">Drikkevarer</button>
+
+        </nav>
+    </header>
 
     <section id="liste"></section>
 
@@ -45,31 +69,40 @@
 
 
     <script>
-        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+        const header = document.querySelector("header h1");
+
         const medieurl = "https://babushka-dd8a.restdb.io/media";
+        const myHeaders = {
 
-        const options = {
-            headers: {
-                'x-apikey': "600ec2fb1346a1524ff12de4"
-            }
-        };
-
+            "x-apikey": "600ec2fb1346a1524ff12de4"
+        }
         document.addEventListener("DOMContentLoaded", start)
         let retter;
+        let filter = "alle";
 
 
         // første funktion der kaldes efter DOM er loaded
         function start() {
-
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filterRetter))
             loadJSON();
+        }
+
+        function filterRetter() {
+            filter = this.dataset.kategori;
+
+            document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt")
+            visRetter();
+            header.textContent = this.textContent;
         }
 
         async function loadJSON() {
             const JSONData = await fetch("https://babushka-dd8a.restdb.io/rest/menu", {
-                headers: options
+                headers: myHeaders
             });
-            personer = await JSONData.json();
-            console.log("Retter", personer);
+            retter = await JSONData.json();
+            console.log("Retter", retter);
             visRetter();
         }
 
@@ -78,15 +111,21 @@
 
             const dest = document.querySelector("#liste"); // container til articles med en person
             const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
+            dest.textContent = "";
 
-            personer.forEach(ret => {
+            retter.forEach(ret => {
+                console.log("Kategori", ret.kategori);
+                if (filter == ret.kategori || filter == "alle") {
 
-                // loop igennem json (personer)
-                const klon = skabelon.cloneNode(true);
-                klon.querySelector(".navn").textContent = ret.navn
-                klon.querySelector(".pris").textContent += menu.pris;
-                klon.querySelector(".land").textContent += menu.oprindelsesregion;
-                dest.appendChild(klon);
+                    // loop igennem json (personer)
+                    const klon = skabelon.cloneNode(true);
+                    klon.querySelector(".navn").textContent = ret.navn;
+                    klon.querySelector(".pris").textContent += ret.pris;
+                    klon.querySelector(".land").textContent += ret.oprindelsesregion;
+
+                    klon.querySelector(".billede").src = medieurl + ret.billede;
+                    dest.appendChild(klon);
+                }
 
             })
         }
