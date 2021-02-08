@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Babushka</title>
+</head>
+
+<style>
+    article {
+        border: solid 2px orange;
+        margin: 10px 0;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 20px;
+    }
+
+
+    img {
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
+
+
+<body>
+    <h1>Babushka</h1>
+
+    <nav>
+        <button data-ret="alle" class="valgt">Alle</button>
+        <button data-ret="forret">Forret</button>
+        <button data-ret="Hovedret">Hovedret</button>
+        <button data-ret="dessert">Dessert</button>
+        <button data-ret="drikkevare">Drikkevare</button>
+
+    </nav>
+
+    <main>
+
+        <template>
+            <article>
+                <img src="" alt="" class="billede">
+                <h2 class="navn"> </h2>
+                <p class="pris">Pris: </p>
+                <p class="land">Oprindelsesregion: </p>
+
+            </article>
+        </template>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", hentData);
+
+        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+
+        const medieurl = "https://babushka-dd8a.restdb.io/media";
+
+        const options = {
+            headers: {
+                'x-apikey': "600ec2fb1346a1524ff12de4"
+            }
+        };
+
+
+        let filter = "forret";
+
+        async function hentData() {
+            const resspons = await fetch(url, options);
+            const json = await resspons.json();
+            vis(json);
+        }
+
+        const main = document.querySelector("main");
+        const template = document.querySelector("template").content;
+
+        function vis(json) {
+            console.log(json)
+            json.forEach(menu => {
+                if (filter == menu.forret) {
+                    const klon = template.cloneNode(true);
+                    klon.querySelector(".navn").textContent = menu.navn;
+                    klon.querySelector(".pris").textContent += menu.pris;
+                    klon.querySelector(".land").textContent += menu.oprindelsesregion;
+                    main.appendChild(klon);
+                }
+
+            })
+        }
+    </script>
+
+</body></html>

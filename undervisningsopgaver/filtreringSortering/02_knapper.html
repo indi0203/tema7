@@ -25,6 +25,10 @@
         width: 100%;
         border-radius: 10px;
     }
+
+    .valgt {
+        background-color: red;
+    }
 </style>
 
 
@@ -32,6 +36,14 @@
     <h1>Persongalleri</h1>
 
     <main>
+
+        <nav>
+            <button data-troende="alle">Alle</button>
+            <button data-troende="ja" class="valgt">Troende</button>
+            <button data-troende="nej">Ikke troende</button>
+            <button data-troende="tvivler">Tvivler</button>
+
+        </nav>
 
         <template>
             <article>
@@ -58,6 +70,10 @@
             }
         };
 
+        let personer;
+        let filter = "ja";
+
+
         async function hentData() {
             const resspons = await fetch(url, options);
             const json = await resspons.json();
@@ -70,12 +86,14 @@
         function vis(json) {
             console.log(json)
             json.forEach(person => {
-                const klon = template.cloneNode(true);
-                klon.querySelector(".billede").src = medieurl + person.billede;
-                klon.querySelector(".navn").textContent = person.fornavn;
-                klon.querySelector(".efternavn").textContent = person.efternavn;
-                klon.querySelector(".hobby").textContent += person.hobby;
-                main.appendChild(klon);
+                if (filter == person.troende) {
+                    const klon = template.cloneNode(true);
+                    klon.querySelector(".billede").src = medieurl + person.billede;
+                    klon.querySelector(".navn").textContent = person.fornavn;
+                    klon.querySelector(".efternavn").textContent = person.efternavn;
+                    klon.querySelector(".hobby").textContent += person.hobby;
+                    main.appendChild(klon);
+                }
 
             })
         }

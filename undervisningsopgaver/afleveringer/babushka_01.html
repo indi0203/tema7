@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        #liste {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 1em;
+            margin: 2em;
+        }
+
+        .person {
+            padding: 1em;
+            border: 1px solid;
+            border-radius: 1em;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section id="liste"></section>
+
+    <template>
+        <article class="ret">
+            <img src="" alt="" class="billede">
+            <h2 class="navn"> </h2>
+            <p class="pris">Pris: </p>
+            <p class="land">Oprindelsesregion: </p>
+        </article>
+    </template>
+
+
+    <script>
+        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+        const medieurl = "https://babushka-dd8a.restdb.io/media";
+
+        const options = {
+            headers: {
+                'x-apikey': "600ec2fb1346a1524ff12de4"
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", start)
+        let retter;
+
+
+        // første funktion der kaldes efter DOM er loaded
+        function start() {
+
+            loadJSON();
+        }
+
+        async function loadJSON() {
+            const JSONData = await fetch("https://babushka-dd8a.restdb.io/rest/menu", {
+                headers: options
+            });
+            personer = await JSONData.json();
+            console.log("Retter", personer);
+            visRetter();
+        }
+
+        //funktion der viser personer i liste view
+        function visRetter() {
+
+            const dest = document.querySelector("#liste"); // container til articles med en person
+            const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
+
+            personer.forEach(ret => {
+
+                // loop igennem json (personer)
+                const klon = skabelon.cloneNode(true);
+                klon.querySelector(".navn").textContent = ret.navn
+                klon.querySelector(".pris").textContent += menu.pris;
+                klon.querySelector(".land").textContent += menu.oprindelsesregion;
+                dest.appendChild(klon);
+
+            })
+        }
+    </script>
+</body></html>
