@@ -26,6 +26,15 @@
             border: 1px solid;
             border-radius: 1em;
         }
+
+        .valgt {
+
+            background-color: red;
+        }
+
+        nav {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -38,9 +47,9 @@
 
         <nav>
             <button data-troende="alle" class="valgt">Alle</button>
-            <button data-troende="ja" class="valgt">Troende</button>
-            <button data-troende="nej" class="valgt">Ikke troende</button>
-            <button data-troende="tvivler" class="valgt">Tvivler</button>
+            <button data-troende="ja">Troende</button>
+            <button data-troende="nej">Ikke troende</button>
+            <button data-troende="tvivler">Tvivler</button>
 
         </nav>
     </header>
@@ -80,9 +89,11 @@
 
         function filterPersoner() {
             filter = this.dataset.troende;
-            header.textContent = this.textContent;
 
+            document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt")
             visPersoner();
+            header.textContent = this.textContent;
         }
 
         async function loadJSON() {
