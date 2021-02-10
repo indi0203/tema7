@@ -4,22 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Babushka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
 </head>
 
 <style>
     article {
-        border: solid 2px orange;
         margin: 10px 0;
         border-radius: 10px;
-        padding: 10px;
+        padding-left: 25px;
+        padding-right: 20px;
+        padding-bottom: 15px;
+        padding-top: 5px;
+        background-color: #F7931E;
+
     }
 
     body {
 
-        margin-left: 50px;
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin: 50px;
+        background-color: #222323;
+    }
+
+    h2,
+    p {
+
+        font-family: 'Roboto Condensed', sans-serif;
+        color: #222323;
+
+    }
+
+    h2 {
+        text-decoration: underline;
+        font-size: 2rem;
     }
 
 
@@ -28,19 +44,44 @@
         border-radius: 10px;
     }
 
+    button {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 0.9rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-top: 3px;
+        margin-right: 4px;
+        background-color: white;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+
 </style>
 
 
 <body>
 
+    <header>
+
+    </header>
+
     <main>
         <article class="ret">
+
+
 
             <h2 class="navn"> </h2>
 
             <img src="" alt="" class="billede">
 
-            <p class="beskrivelse"></p>
+            <p class="beskrivelse"> </p>
+
+            <p class="land"></p>
+
+            <p class="pris"></p>
+
+
 
             <button>Tilbage</button>
 
@@ -81,6 +122,8 @@
             document.querySelector(".navn").textContent = ret.navn;
             document.querySelector(".billede").src = medieurl + ret.billede;
             document.querySelector(".beskrivelse").textContent = ret.langbeskrivelse;
+            document.querySelector(".land").textContent = `Oprindelsesregion: ${ret.oprindelsesregion}`;
+            document.querySelector(".pris").textContent = `Pris: ${ret.pris},-`;
             document.querySelector("button").addEventListener("click", tilbageTilMenu);
 
         }
