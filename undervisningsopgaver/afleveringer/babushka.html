@@ -35,7 +35,6 @@
         header {
             text-align: center;
         }
-
     </style>
 
 </head>
@@ -125,6 +124,8 @@
                     klon.querySelector(".land").textContent += ret.oprindelsesregion;
                     klon.querySelector(".billede").src = medieurl + ret.billede;
 
+                    klon.querySelector(".ret").addEventListener("click", () => visDetajljer(ret));
+
 
                     dest.appendChild(klon);
                 }
@@ -132,7 +133,9 @@
             })
         }
 
+        function visDetajljer(single) {
+            location.href = `babushka_single.html?id=${single._id}`;
+        }
     </script>
-</body>
 
-</html>
+</body></html>

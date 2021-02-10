@@ -14,85 +14,85 @@
         padding: 10px;
     }
 
-    main {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        grid-gap: 20px;
+    body {
+
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 
 
     img {
-        width: 100%;
+        width: 50vw;
         border-radius: 10px;
     }
+
 </style>
 
 
 <body>
-    <h1>Babushka</h1>
-
-    <nav>
-        <button data-ret="alle" class="valgt">Alle</button>
-        <button data-ret="forret">Forret</button>
-        <button data-ret="Hovedret">Hovedret</button>
-        <button data-ret="dessert">Dessert</button>
-        <button data-ret="sideorders">Sideorders</button>
-        <button data-ret="drikkevare">Drikkevare</button>
-
-    </nav>
 
     <main>
+        <article class="ret">
 
-        <template>
-            <article>
-                <img src="" alt="" class="billede">
-                <h2 class="navn"> </h2>
-                <p class="pris">Pris: </p>
-                <p class="land">Oprindelsesregion: </p>
+            <h2 class="navn"> </h2>
 
-            </article>
-        </template>
+            <img src="" alt="" class="billede">
+
+            <p class="beskrivelse"></p>
+
+            <button>Tilbage</button>
+
+        </article>
+
 
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", hentData);
-
-        const url = "https://babushka-dd8a.restdb.io/rest/menu";
-
-        const medieurl = "https://babushka-dd8a.restdb.io/media";
-
-        const options = {
-            headers: {
-                'x-apikey': "600ec2fb1346a1524ff12de4"
-            }
-        };
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
 
 
-        let filter = "forret";
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+        let retter;
+        const myHeaders = {
 
-        async function hentData() {
-            const resspons = await fetch(url, options);
-            const json = await resspons.json();
-            vis(json);
+            "x-apikey": "600ec2fb1346a1524ff12de4"
         }
 
-        const main = document.querySelector("main");
-        const template = document.querySelector("template").content;
+        console.log("ID", id);
 
-        function vis(json) {
-            console.log(json)
-            json.forEach(menu => {
-                if (filter == menu.forret) {
-                    const klon = template.cloneNode(true);
-                    klon.querySelector(".navn").textContent = menu.navn;
-                    klon.querySelector(".pris").textContent += menu.pris;
-                    klon.querySelector(".land").textContent += menu.oprindelsesregion;
-                    main.appendChild(klon);
-                }
+        document.addEventListener("DOMContentLoaded", loadJSON)
 
-            })
+
+        async function loadJSON() {
+            const JSONData = await fetch(`https://babushka-dd8a.restdb.io/rest/menu/${id}`, {
+                headers: myHeaders
+            });
+            ret = await JSONData.json();
+            console.log("retter", ret);
+            visRet(ret);
         }
+
+        //funktion der viser personer i liste view
+        function visRet() {
+            console.log()
+            document.querySelector(".navn").textContent = ret.navn;
+            document.querySelector(".billede").src = medieurl + ret.billede;
+            document.querySelector(".beskrivelse").textContent = ret.langbeskrivelse;
+            document.querySelector("button").addEventListener("click", tilbageTilMenu);
+
+        }
+
+
+        function tilbageTilMenu() {
+            history.back();
+
+        }
+
     </script>
 
-</body></html>
+</body>
+
+</html>
